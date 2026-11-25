@@ -260,11 +260,12 @@ def train():
     logger = CompleteLogger(log_path, log_name=log_name)
 
         
+    device_map = {"": int(os.environ["LOCAL_RANK"])} if "LOCAL_RANK" in os.environ else "auto"
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,
         load_in_8bit=False,
         cache_dir=training_args.cache_dir,
-        device_map="auto",
+        device_map=device_map,
         token = access_token
 
     )
