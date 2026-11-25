@@ -17,6 +17,7 @@ dependencies = [
     "pyarrow==14.0.1",
     "safetensors==0.4.5",
     "sentencepiece==0.1.99",
+    "setuptools==80.9.0",
     "tokenizers==0.20.1",
     "torch==2.1.0",
     "tqdm==4.64.1",
