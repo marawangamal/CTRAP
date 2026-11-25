@@ -8,7 +8,7 @@ sys.path.append('../..')
 parser = argparse.ArgumentParser()
 parser.add_argument("--input_path", default='')
 parser.add_argument("--moderation_model", default="PKU-Alignment/beaver-dam-7b")
-parser.add_argument("--cache_dir", default=os.environ.get("HF_HOME"))
+parser.add_argument("--cache_dir", default=None)
 args = parser.parse_args()
 
 

@@ -14,7 +14,7 @@ parser.add_argument("--lora_folder", default="")
 parser.add_argument("--lora_folder2", default="")
 parser.add_argument("--instruction_path", default='BeaverTails')
 parser.add_argument("--output_path", default='')
-parser.add_argument("--cache_dir", default=os.environ.get("HF_HOME", "../../cache"))
+parser.add_argument("--cache_dir", default=None)
 
 args = parser.parse_args()
 print(args)
