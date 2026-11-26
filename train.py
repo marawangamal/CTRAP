@@ -13,6 +13,7 @@
 #    limitations under the License.
 
 import sys
+import os
 import copy
 import logging
 from dataclasses import dataclass, field
@@ -34,8 +35,7 @@ wandb.init(mode="disabled")
 sys.path.append('..')
 import utils
 from utils import SupervisedDataset, HelpfulDataset, RetainDataset
-# // Set access token (NB: Keep this private!)
-access_token = next(open('huggingface_token.txt')).strip()
+access_token = os.environ.get("HF_TOKEN")
 
 
 IGNORE_INDEX = -100
@@ -260,11 +260,12 @@ def train():
     logger = CompleteLogger(log_path, log_name=log_name)
 
         
+    device_map = {"": int(os.environ["LOCAL_RANK"])} if "LOCAL_RANK" in os.environ else "auto"
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,
         load_in_8bit=False,
         cache_dir=training_args.cache_dir,
-        device_map="auto",
+        device_map=device_map,
         token = access_token
 
     )
